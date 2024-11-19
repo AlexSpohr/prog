@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class UsuarioView {
     private UsuarioController usuarioController;
-    private BibliotecaView bibliotecaView;
+    private BibliotecaView bibliotecaView = new BibliotecaView(null);
     private static Scanner scanner = new Scanner(System.in);
 
     public static void iniciarMenu() {

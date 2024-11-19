@@ -30,29 +30,50 @@ public class AnotacaoController {
 
     public void visualizarAnotacoes() {
         view.mostrarMensagem("------ Anotações ------");
-        view.exibirAnotacoes(livro.getAnotacoes());
+        if (livro.getAnotacoes().isEmpty()) {
+            view.mostrarMensagem("-- Nenhuma anotação cadastrada.");
+        } else {
+            view.exibirAnotacoesDetalhadas(livro.getAnotacoes());
+        }
     }
 
     public void editarAnotacao() {
         view.mostrarMensagem("------ Editar Anotação ------");
-        visualizarAnotacoes();
-        int indice = view.obterIndiceAnotacao();
 
-        if (indice >= 0 && indice < livro.getAnotacoes().size()) {
-            Anotacao anotacao = livro.getAnotacoes().get(indice);
-            view.mostrarMensagem("Conteúdo atual: " + anotacao.getConteudo());
-
-            String novoConteudo = view.obterConteudoAnotacao();
-            int novoCapitulo = view.obterCapituloAnotacao();
-
-            anotacao.setConteudo(novoConteudo);
-            anotacao.setCapitulo(novoCapitulo);
-
-            view.mostrarMensagem("Anotação editada com sucesso!");
-        } else {
-            view.mostrarMensagem("Anotação inexistente.");
+        if (livro.getAnotacoes().isEmpty()) {
+            view.mostrarMensagem("-- Nenhuma anotação disponível para editar.");
+            return;
         }
+
+        visualizarAnotacoes();
+
+        int indice = -1;
+        while (true) {
+            try {
+                indice = view.obterIndiceAnotacao();
+                if (indice >= 0 && indice < livro.getAnotacoes().size()) {
+                    break; // índice válido
+                } else {
+                    view.mostrarMensagem("-- Índice inválido. Tente novamente.");
+                }
+            } catch (Exception e) {
+                view.mostrarMensagem("-- Entrada inválida. Por favor, insira um número.");
+                view.limparBufferScanner();
+            }
+        }
+
+        Anotacao anotacao = livro.getAnotacoes().get(indice);
+        view.mostrarMensagem("Conteúdo atual: " + anotacao.getConteudo());
+
+        String novoConteudo = view.obterConteudoAnotacao();
+        int novoCapitulo = view.obterCapituloAnotacao();
+
+        anotacao.setConteudo(novoConteudo);
+        anotacao.setCapitulo(novoCapitulo);
+
+        view.mostrarMensagem("Anotação editada com sucesso!");
     }
+
 
     public void excluirAnotacao() {
         view.mostrarMensagem("------ Excluir Anotação ------");
