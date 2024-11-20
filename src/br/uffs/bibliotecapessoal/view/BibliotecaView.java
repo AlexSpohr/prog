@@ -124,7 +124,6 @@ public class BibliotecaView {
             return;
         }
         livroController.visualizarLivros(escolha, usuario);
-        System.out.println("-- Pressione para continuar...");
     }
 
     private void gerenciarAnotacoes(Usuario usuario) {
