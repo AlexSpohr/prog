@@ -140,8 +140,13 @@ public class LivroController {
             return;
         }
 
-        livros.remove(livroEscolhido);
-        view.mostrarMensagem("-- Livro '" + livroEscolhido.getTitulo() + "' excluído com sucesso!");
+        boolean removido = usuario.removerLivroPorTitulo(titulo);
+
+        if (removido) {
+            view.mostrarMensagem("-- Livro '" + livroEscolhido.getTitulo() + "' excluído com sucesso!");
+        } else {
+            view.mostrarMensagem("-- Não foi possível excluir o livro.");
+        }
     }
 
 

@@ -75,6 +75,11 @@ public class Usuario {
         return null;
     }
 
+    public boolean removerLivroPorTitulo(String titulo) {
+        return listaLivros.removeIf(livro -> livro.getTitulo().equalsIgnoreCase(titulo));
+    }
+
+
 }
 
 
