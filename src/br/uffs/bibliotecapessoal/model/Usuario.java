@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Usuario {
     private String nome;
-    private int senha;
+    private String  senha;
     private ArrayList<Livro> listaLivros;
 
-    public Usuario(String nome, int senha) {
+    public Usuario(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
         this.listaLivros = new ArrayList<>();
@@ -22,11 +22,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

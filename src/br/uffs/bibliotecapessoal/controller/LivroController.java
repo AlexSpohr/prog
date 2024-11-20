@@ -2,6 +2,9 @@ package br.uffs.bibliotecapessoal.controller;
 
 import br.uffs.bibliotecapessoal.model.Livro;
 import br.uffs.bibliotecapessoal.model.LivroBiografia;
+import br.uffs.bibliotecapessoal.model.LivroFiccao;
+import br.uffs.bibliotecapessoal.model.LivroFilosofico;
+import br.uffs.bibliotecapessoal.model.LivroHistorico;
 import br.uffs.bibliotecapessoal.model.Usuario;
 import br.uffs.bibliotecapessoal.utils.Utils;
 import br.uffs.bibliotecapessoal.view.LivroView;
@@ -33,6 +36,18 @@ public class LivroController {
         if (livro instanceof LivroBiografia biografia) {
             biografia.setBiografado(view.obterEntrada("-- Nome do biografado:"));
             biografia.setPeriodoCoberto(view.obterEntradaInt("-- Período coberto:"));
+        }
+        if (livro instanceof LivroFiccao ficcao) {
+            ficcao.setIdadeRecomendada(view.obterEntradaInt("-- Idade Recomendada:"));
+            ficcao.setTema(view.obterEntrada("-- Tema:"));
+        }
+        if (livro instanceof LivroFilosofico filosofico) {
+            filosofico.setFilosofiaAbordada(view.obterEntrada("-- Filosofia abordada:"));
+            filosofico.setFilosofoAbordado(view.obterEntrada("-- Filosofo:"));
+        }
+        if (livro instanceof LivroHistorico historico) {
+            historico.setAnoPerildoHistorico(view.obterEntradaInt("-- Ano acontecimento Histórico:"));
+            historico.setPerildoHistorico(view.obterEntrada("-- Período Histórico:"));
         }
 
         view.mostrarMensagem("Livro registrado com sucesso!");
@@ -163,10 +178,23 @@ public class LivroController {
             biografia.setPeriodoCoberto(view.obterEntradaInt("-- Novo Período Coberto:"));
             Utils.consumirLinha();
         }
+        if (livro instanceof LivroFiccao ficcao) {
+            ficcao.setIdadeRecomendada(view.obterEntradaInt("-- Novo Idade Recomendada:"));
+            ficcao.setTema(view.obterEntrada("-- Novo Tema:"));
+            Utils.consumirLinha();
+        }
+        if (livro instanceof LivroFilosofico filosofico) {
+            filosofico.setFilosofiaAbordada(view.obterEntrada("-- Novo Filosofia abordada:"));
+            filosofico.setFilosofoAbordado(view.obterEntrada("-- Novo Filosofo:"));
+            Utils.consumirLinha();
+        }
+        if (livro instanceof LivroHistorico historico) {
+            historico.setAnoPerildoHistorico(view.obterEntradaInt("-- Novo Ano acontecimento Histórico:"));
+            historico.setPerildoHistorico(view.obterEntrada("-- Novo Período Histórico:"));
+            Utils.consumirLinha();
+        }
 
         view.mostrarMensagem("-- Livro editado com sucesso!");
     }
 
 }
-
-

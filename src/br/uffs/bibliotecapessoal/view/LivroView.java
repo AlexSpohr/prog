@@ -2,6 +2,9 @@ package br.uffs.bibliotecapessoal.view;
 
 import br.uffs.bibliotecapessoal.model.Livro;
 import br.uffs.bibliotecapessoal.model.LivroBiografia;
+import br.uffs.bibliotecapessoal.model.LivroFiccao;
+import br.uffs.bibliotecapessoal.model.LivroFilosofico;
+import br.uffs.bibliotecapessoal.model.LivroHistorico;
 
 import java.util.Scanner;
 
@@ -49,6 +52,24 @@ public class LivroView {
             mostrarMensagem("-- Período Coberto: " + biografia.getPerildoCoberto());
         }
 
+        if (livro instanceof LivroFiccao) {
+            LivroFiccao ficcao = (LivroFiccao) livro;
+            mostrarMensagem("-- IdadeRecomendado: " + ficcao.getIdadeRecomendada());
+            mostrarMensagem("-- Tema: " + ficcao.getTema());
+        }
+
+        if (livro instanceof LivroFilosofico) {
+            LivroFilosofico filosofico = (LivroFilosofico) livro;
+            mostrarMensagem("-- Filosofia abordada: " + filosofico.getFilosofiaAbordada());
+            mostrarMensagem("-- Filosofo: " + filosofico.getFilosofoAbordado());
+        }
+
+        if (livro instanceof LivroHistorico) {
+            LivroHistorico historico = (LivroHistorico) livro;
+            mostrarMensagem("-- Ano do acontecimento histórico: " + historico.getAnoPerildoHistorico());
+            mostrarMensagem("-- Período histórico: " + historico.getPerildoHistorico());
+        }
+
         mostrarMensagem("-- Status: " + livro.getStatus());
         mostrarMensagem("=================================");
     }
@@ -61,4 +82,3 @@ public class LivroView {
         return obterEntradaInt("-- Período Coberto:");
     }
 }
-
